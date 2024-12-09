@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Term</title>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Header -->
+        <div class="header"> 
+            <div class="header__container">
+                <div class="header__logo">
+                    <img class="header__img" src="../img/JsPractice/logo.svg" alt="Logo">
+                </div>
+                <a href="../index.html" class="header__link">Home page</a>
+            </div>       
+        </div>
+        <!-- Body -->
+        <main class="main">
+            <div class="date">               
+                <div class="date__container">
+                   <div class="date__header">
+                       <button data-btn="newDate" class="date__btn">Додати дату</button>
+                       <button data-btn="saveDocument" class="date__btn date__btn_save">Зберегти</button>
+                   </div>
+                    <div class="date__items">
+                        <div class="date__title">Магазини</div>
+                        <div data-container class="date__item">
+
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </main>
+    </div>
+    <!-- Popup -->
+    <div style="visibility: hidden;" id="popup" class="popup">
+        <div class="popup__wrapper">
+            <button class="popup__btn-remove"></button>
+            <div id="popup-content" class="popup__content">
+            </div>
+        </div>
+    </div>
+     
+</body>
+</html>

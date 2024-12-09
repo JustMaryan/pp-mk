@@ -1,0 +1,268 @@
+@use "sass:math";
+
+// Подключение миксинов ===========================================================================================================================================================================================================================================================================
+@import "assets/mixins";
+
+// Подключение шрифтов ===========================================================================================================================================================================================================================================================================
+//&display=swap - добавить при подключении через плагин
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+// Подключить если есть локальные файлы шрифтов
+@import "assets/fonts/fonts";
+
+// Подключение иконочных шрифтов ==============================================================================================================================================================================================================================================================================
+// Подключить если есть файл иконочного шрифта
+@import "assets/fonts/icons";
+
+// Шрифт по умолчанию ==============================================================================================================================================================================================================================================================================
+$fontFamily: "Roboto", sans-serif;
+$Cyberpunk: "Cyberpunk-Regular";
+$fontSize: rem(14); // где 14(px) - размер шрифта по умолчанию из макета
+
+// Основные цвета
+$mainColor: #000; // Цвет шрифта по умолчанию
+
+// НАСТРОЙКИ ===============================================================================================================================================================================================================================================================================================
+// Минимальная ширина страницы
+$minWidth: 320;
+// Ширина полотна (макета)
+$maxWidth: 1920;
+// Ширина ограничивающего контейнера (0 = нет ограничения)
+$maxWidthContainer: 1570;
+// Общий отступ у контейнера
+// (30 = по 15px слева и справа, 0 = нет отступа)
+$containerPadding: 30;
+
+// Ширина срабатывания первого брейкпоинта
+$containerWidth: $maxWidthContainer + $containerPadding;
+
+// Брейк-поинты
+$pc: em($containerWidth); // ПК, ноутбуки, некоторые планшеты в горизонтальном положении
+$tablet: em(991.98); // Планшеты, некоторые телефоны в горизонтальном положении
+$mobile: em(767.98); // Телефоны L
+$mobileSmall: em(479.98); // Телефоны S
+
+// Тип адаптива:
+// 1 = отзывчивость (у контейнера нет брейкпоинтов),
+// 2 = по брейк-поинтам (контейнер меняет свою ширину по брейк-поинтам)
+$responsiveType: 1;
+
+// Обнуление и общие параметры ============================================================================================================================================================================================== =============================================================================================== ===============================================================================================
+@import "assets/null";
+
+body {
+	// Скролл заблокирован
+	.lock & {
+		overflow: hidden;
+		touch-action: none;
+	}
+	// Сайт загружен
+	.loaded & {
+	}
+}
+// Оболочка ============================================================================================================================================================================================================================================================================================================================================================================================================================================
+.wrapper {
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: clip;
+	// Прижимаем footer
+	> main {
+		flex: 1 1 auto;
+	}
+	// Фикс для слайдеров
+	> * {
+		min-width: 0;
+	}
+}
+// Ограничивающий контейнер ======================================================================================================================================================================================================================
+
+/*
+(i) Стили будут применяться ко 
+всем классам содержащим *__container
+Например header__container, main__container и т.д.
+Снипет (HTML): cnt
+*/
+@if ($responsiveType==1) {
+	// Отзывчивая
+	[class*="__container"] {
+		@if ($maxWidthContainer>0) {
+			max-width: rem($maxWidthContainer);
+			box-sizing: content-box;
+			margin: 0 auto;
+		}
+		@if ($containerPadding>0) {
+			padding: 0 rem(math.div($containerPadding, 2));
+		}
+	}
+} @else {
+	// По брейк-поинтам
+	[class*="__container"] {
+		margin: 0 auto;
+		@if ($maxWidthContainer>0) {
+			max-width: rem($maxWidthContainer);
+			box-sizing: content-box;
+		} @else {
+			@if ($containerPadding>0) {
+				padding: 0 rem(math.div($containerPadding, 2));
+			}
+		}
+		@media (max-width: $pc) {
+			max-width: rem(970);
+		}
+		@media (max-width: $tablet) {
+			max-width: rem(750);
+		}
+		@media (max-width: $mobile) {
+			max-width: none;
+			@if ($containerPadding>0 and $maxWidthContainer>0) {
+				padding: 0 rem(math.div($containerPadding, 2));
+			}
+		}
+	}
+}
+
+// Подключение базовых стилей, шаблонов (заготовок) и вспомогательных  классов
+// Для подключения/отключения конкретных стилей смотри base.scss
+@import "assets/base.scss";
+
+
+
+// Глобальні зміни
+
+.lang {
+	&{
+	  display: flex;
+	  align-items: flex-start;
+	  column-gap: rem(3);
+	  padding: rem(5) 0;
+
+	}
+	&__wrapper{
+	  display: flex;
+	  align-items:flex-end;
+	  font-size: rem(16);
+	  column-gap: rem(3);	  
+	  line-height: 1;
+	}
+	&__btn {
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+  
+	  &:hover {
+		color: rgba(0, 0, 0, 0.5);
+		text-decoration: underline;
+	  }
+  
+	  &._active-lang {
+		text-decoration: underline;
+	  }
+  
+	  &_en {}
+	  &_uk {}
+	}
+  
+	&__icon {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	  font-size: rem(18);
+	}
+  }
+
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: rem(15);
+
+    // Container
+    &__block {
+        padding: rem(40) rem(20);
+        background-color: #fff;
+        max-width: rem(800);
+        min-width: 50%;
+        border-radius: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: rem(15);
+        color: #4A4A4A;
+    }
+
+    // Head
+    &__header {
+        margin-bottom: rem(5);
+    }
+
+    // Head > Img
+    &__logo {
+        max-width: rem(60);
+        margin: 0 auto rem(5);
+    }
+
+    &__img {
+        width: 100%;
+    }
+
+    // Head > Title
+    &__title {
+        color: #27AE60;
+        font-size: rem(24);
+        font-weight: 700;
+        text-align: center;
+
+        ._popup-error & {
+            color: #F21E1E;
+        }
+    }
+    
+
+    // Description
+    &__body {
+        text-align: center;
+        font-weight: 700;
+        font-size: rem(16);
+    }
+
+    // Confirm
+    &__footer {
+        text-align: center;
+    }
+
+    &__text {
+        margin-bottom: rem(30);
+    }
+
+    &__btn {
+        display: inline-block;
+        min-width: rem(200);
+        padding: rem(15) rem(10);
+        background-color: #27AE60;
+        border-radius: 10px;
+        color: #fff;
+        transition: background-color .3s ease;
+
+        &:hover {
+            background-color: rgba(39, 174, 95, 0.5);
+        }
+
+        ._popup-error & {
+            background-color: #F21E1E;
+        }
+
+        ._popup-error &:hover {
+            background-color: rgba(242, 30, 30, 0.5);
+        }
+    }
+
+    
+}

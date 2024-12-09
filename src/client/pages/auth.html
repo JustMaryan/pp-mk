@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in/Sign Up</title>
+</head>
+<body>
+    <div class="wrapper">
+        <!-- Header -->
+        <header class="header">
+			<div class="header__container">
+                <!-- Logo -->
+				<div class="header__logo">
+                </div>
+                <!-- Language -->
+				<div class="lang">
+					<div class="lang__wrapper">		
+						<button data-lang-btn="en" type="button" class="lang__btn lang__btn_en _active-lang">en</button>
+						/
+						<button data-lang-btn="uk" type="button" class="lang__btn lang__btn_uk">ua</button>
+					</div>
+					<div class="lang__icon _icon-lang"></div>
+				</div>
+                <!-- Buttons -->
+                <a data-lang="homePage" href="../index.html" class="header__btn">Home page</a>
+			</div>
+		</header>
+        <!-- Main -->
+        <main class="main">
+            <div class="main__container">
+                <!-- Form -->
+                <div class="form">
+                    <!-- Questions -->
+                    <div class="form__questions">
+                        <section class="form__question">
+                            <h2 data-lang="auth-quest-has-acount" class="form__text">Do you already have an account ?</h2>
+                            <button data-lang="auth-quest-log-in" data-btn type="button" class="form__btn">Log in</button>
+                        </section>
+                        <section class="form__question">
+                            <h2 data-lang="auth-quest-hasnt-acount" class="form__text">У вас нема аккаунта ?</h2>
+                            <button data-lang="auth-quest-registr" data-btn type="button" class="form__btn">Регистрація</button>
+                        </section>
+                    </div>
+                    <!-- Identification -->
+                    <div class="form__ident ident-block">
+                        <!-- Authorization -->
+                        <form id="authForm" class="ident-block__content ident-block__content_log">
+                                <h3 data-lang="auth-log-in-title" class="ident-block__title">Sign In</h3>
+                                <p class="ident-block__text">
+                                    <input data-form="login" class="ident-block__input" type="text" placeholder="Login">
+                                    <span data-lang="wrongLogin" class="ident-block__error">*Incorrect login</span>
+                                </p>
+                                <p class="ident-block__text">
+                                    <input data-form="password" class="ident-block__input" type="password" placeholder="Password">
+                                    <span data-lang="wrongPassword" class="ident-block__error">*Incorrect password</span>
+                                </p>
+                                <p class="ident-block__text"></p>
+                                <button data-lang="auth-log-in-button" type="submit" class="ident-block__btn">Sign In</button>
+                        </form>
+                        <!-- Registrations -->
+                        <form id="registrForm" class="ident-block__content ident-block__content_sign ">
+                            <h3 data-lang="auth-registr-title" class="ident-block__title">Sign Up</h3>
+                            <p class="ident-block__text">
+                                <input data-form="login" class="ident-block__input" type="text" placeholder="Login">
+                                <span data-lang="wrongTypeLogin" class="ident-block__error">*The login cannot contain special characters such as @,#,$,%,&,*, etc. Minimum width is 4 characters.</span>
+                            </p>
+                            <p class="ident-block__text">
+                                <input data-form="password" class="ident-block__input" type="password" placeholder="Password">
+                                <span data-lang="wrongPasswordLength" class="ident-block__error">*Minimum password width is 5 characters.</span>
+                             </p>
+                            <p class="ident-block__text">
+                                <input data-form="email" class="ident-block__input" type="email" placeholder="email">
+                            </p>
+                            <p class="ident-block__text"></p>
+                            <button data-lang="auth-registr-button" type="submit" class="ident-block__btn">Sign Up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

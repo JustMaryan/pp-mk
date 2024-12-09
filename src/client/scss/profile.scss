@@ -1,0 +1,224 @@
+@import "base/style.scss";
+
+
+body {
+    background-color: #000;
+    color: #aaa;
+}
+
+// .wrapper {
+//     min-height: 100dvh;
+// }
+
+// Header
+.header {
+
+	&__container {
+        min-height: rem(80);
+        display: flex;
+        align-items: center;
+        column-gap: rem(10);
+	}
+	&__logo {
+        flex: 1 1 auto;
+        font-size: rem(24);
+        font-style: italic;
+        font-weight: 700;
+
+        &:before {
+            content: 'MaryanKvasnitsha';
+
+            @media (max-width:$mobile) {
+                content: 'MK';
+            }
+        }
+    }
+	&__btn {
+        padding: 10px 8px;
+        background-color: var(--block-shadow-inner);
+        box-shadow: 0 5px 45px var(--block-shadow);
+        &:hover {
+            text-decoration: underline;
+        }
+	}
+}
+
+.lang__btn {
+
+    &:hover{
+        color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+// Main
+.profile {
+
+    &__container {
+        display: flex;
+        justify-content: space-evenly;
+        font-size: rem(16);
+        padding: rem(30) rem(15);
+
+        @media (max-width: $mobile) {
+            flex-direction: column-reverse;
+        }
+    }
+
+    &__status {
+        flex-basis: 50%;
+        // flex: 1 1 auto;
+    }
+
+    &__avatar {
+        @media (max-width: $mobile) {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
+}
+
+// Main > Status
+.status {
+
+    &__title {
+        font-size: rem(20);
+        margin: 0 0 30px 0;
+        color: #4e4e4e;
+    }
+
+    // Input > container    
+    &__info {
+        display: grid;
+        grid-template-columns: rem(100) minmax(200px, 400px);
+        // grid-template-rows: 1fr;
+        align-items: center;
+        gap: rem(30);
+        margin-bottom: rem(15);
+    }
+    // Input > description
+    &__text {
+    }
+    //  Input > content
+    &__input {
+        color: #dadada;
+        font-weight: 700;
+        padding: rem(5) rem(3);
+        width: 100%;
+        background-color: #000;
+        outline: none;
+        border-bottom: 1px solid #fff;
+
+        &_date {
+            width: auto;
+            align-self: start;
+            justify-self: start;
+            padding: 0;
+            border: none;
+        }
+
+        &:focus {
+            color: rgba(255, 255, 255, 0.5);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+        }
+    } 
+    
+    
+    // Buttons
+    &__btns {
+        margin: rem(60) 0 0 0;
+        gap: 10px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    &__btn {
+        padding: 8px 12px;
+        border-radius: 10px;
+
+        &_delete {
+            color: rgba(209, 78, 78, 0.8);
+            background-color: rgba(209, 78, 78, 0.1);
+            border: 3px solid rgba(209, 78, 78, 0.8);
+            &:hover {
+                background-color: rgba(209, 78, 78, 0.4);
+            }
+        }
+
+        &_save {
+            color: rgba(78, 209, 78, 0.8);
+            background-color: rgba(78, 209, 78, 0.1);
+            border: 3px solid rgba(78, 209, 78, 0.8);
+            &:hover {
+                background-color: rgba(78, 209, 78, 0.4);
+            }
+        }
+    }
+
+}
+
+//  Main > Avatar
+.avatar {
+
+    &__title {
+        font-size: rem(20);
+        margin: 0 0 30px 0;
+        color: #4e4e4e;
+    }
+
+    &__pic-ibg {
+        width: rem(250);
+        padding: 0 0 rem(250) 0;
+        position: relative;
+        @media (max-width: $mobile) {
+            align-self: center;
+        }
+    }
+
+    &__img {
+        
+    }
+
+    &__btn-confirm {
+        position: absolute;
+        bottom: rem(40);
+        left: rem(10);
+        background-color: rgba(0, 0, 0, 0.7);
+        padding: 8px 12px;
+        border: 3px solid rgba(255, 255, 255, 0.8);
+        border-radius: 10px;
+
+        &:hover {
+            background-color: #000
+        }
+    }
+}
+
+// Footer
+.contact {
+
+    &__container {}
+
+    &__title {
+        margin: 0 0 rem(30) 0;
+        padding: rem(10) 0;
+        font-size: rem(20);
+        color: #4e4e4e;
+        border-bottom: 1px solid rgba(78, 78, 78, 0.5);
+    }
+
+    &__text {
+        margin: 0 0 rem(15);
+    }
+
+    &__link {
+        display: flex;
+        column-gap: 5px;
+        margin: 0 0 rem(10);
+
+        &:hover {
+            color: rgba(170, 170, 170, 0.5);
+        }
+    }
+}
+

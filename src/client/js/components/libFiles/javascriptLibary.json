@@ -1,0 +1,50 @@
+{
+    "menu": [
+        {
+            "menuName": "Нова глава",
+            "menuItems": [
+                {
+                    "itemName": "Заголовок",
+                    "itemType": "Title",
+                    "itemId": 1
+                },
+                {
+                    "itemName": "Заголовок",
+                    "itemType": "Subtitle",
+                    "itemId": 1
+                }
+            ]
+        }
+    ],
+    "chapter": [
+        {
+            "chapterTitle": "Нова глава",
+            "contentSections": [
+                {
+                    "sectionType": "Title",
+                    "sectionText": "Заголовок",
+                    "sectionId": 1,
+                    "sectionDescription": null
+                },
+                {
+                    "sectionType": "Text",
+                    "sectionText": "Контент",
+                    "sectionId": null,
+                    "sectionDescription": null
+                },
+                {
+                    "sectionType": "Warning",
+                    "sectionText": "Контент",
+                    "sectionId": null,
+                    "sectionDescription": null
+                },
+                {
+                    "sectionType": "Code",
+                    "sectionText": "Контент",
+                    "sectionId": null,
+                    "sectionDescription": "Опис"
+                }
+            ]
+        }
+    ]
+}

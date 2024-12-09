@@ -1,0 +1,121 @@
+%ic {
+	font-family: "icons";
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+[class*="_icon-"] {
+	&:before {
+		@extend %ic;
+		display: block;
+	}
+}
+
+
+._icon-copy-alt:before {
+  content: "\e918";
+}
+._icon-file-edit:before {
+  content: "\e919";
+}
+._icon-codewars:before {
+  content: "\e91d";
+}
+._icon-next3-svgrepo-com-1:before {
+  content: "\e91b";
+}
+._icon-donkey-svgrepo-com:before {
+  content: "\e91a";
+}
+._icon-rotate-reverse:before {
+  content: "\e917";
+}
+._icon-settings-sliders:before {
+  content: "\e916";
+}
+._icon-sort-size-up:before {
+  content: "\e900";
+}
+._icon-github:before {
+  content: "\e91c";
+}
+._icon-list:before {
+  content: "\e901";
+}
+._icon-indent:before {
+  content: "\e902";
+}
+._icon-outdent:before {
+  content: "\e903";
+}
+._icon-align-justify:before {
+  content: "\e904";
+}
+._icon-align-center:before {
+  content: "\e905";
+}
+._icon-align-left:before {
+  content: "\e906";
+}
+._icon-symbol:before {
+  content: "\e907";
+}
+._icon-cross:before {
+  content: "\e908";
+}
+._icon-angle-right:before {
+  content: "\e909";
+}
+._icon-angle-down:before {
+  content: "\e90a";
+}
+._icon-angle-left:before {
+  content: "\e90b";
+}
+._icon-terminal:before {
+  content: "\e90c";
+}
+._icon-underline:before {
+  content: "\e90d";
+}
+._icon-link-slash-alt:before {
+  content: "\e90e";
+}
+._icon-link-alt:before {
+  content: "\e90f";
+}
+._icon-italic:before {
+  content: "\e910";
+}
+._icon-bold:before {
+  content: "\e911";
+}
+._icon-fill:before {
+  content: "\e912";
+}
+._icon-palette:before {
+  content: "\e913";
+}
+._icon-apps-add:before {
+  content: "\e914";
+}
+._icon-plus:before {
+  content: "\e915";
+}
+._icon-user:before {
+  content: "\e971";
+}
+._icon-lang:before {
+  content: "\e9c9";
+}
+._icon-info:before {
+  content: "\ea0c";
+}
+._icon-mail4:before {
+  content: "\ea86";
+}
+

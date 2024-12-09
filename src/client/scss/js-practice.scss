@@ -1,0 +1,52 @@
+@import "base/style.scss";
+
+.header {
+
+    // .header__container
+
+    &__container {
+        min-height: rem(72);
+        display: flex;
+        align-items: center;
+    }
+
+    // .header__logo
+
+    &__logo {
+        flex: 1 1 auto;
+    }
+
+    // .header__link
+
+}
+
+.btn-slide {
+    position: relative;
+    overflow: hidden;
+    &__text{
+        font-weight: 500;
+        padding: rem(8) rem(5);
+        display: inline-block; 
+        border: 1px solid #000;
+        position: relative;
+        transition: color .4s ease;
+    }
+    &__bg{
+        background-color: #000;
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        transition: left .3s ease;
+    }
+
+    &:hover .btn-slide__text{
+        color: #fff;
+    }
+
+    &:hover .btn-slide__bg {
+        left: 0;
+    }
+}
+

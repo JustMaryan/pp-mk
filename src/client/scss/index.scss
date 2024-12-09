@@ -1,0 +1,458 @@
+@import "base/style.scss";
+
+@font-face {
+    font-family: Cyber;
+    src: url("https://assets.codepen.io/605876/Blender-Pro-Bold.otf");
+    font-display: swap;
+  }
+
+
+.wrapper {
+  &{
+    height: calc(100vh - 60px);
+    overflow: hidden;
+    font-family: 'Cyber';
+    position: relative;  
+  }
+ 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/HomePage/bg.jpg") 50% / cover no-repeat;
+    // filter: blur(1px);
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.65);
+    // filter: blur(10px);
+  }
+}
+
+// header
+.header {
+  &{
+    background-color: #FCEE0A;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    font-family: $Cyberpunk;
+    z-index: 100; 
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -14px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: url('../img/HomePage/city-line.svg') 50% / cover no-repeat;
+  }
+
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: rem(10) rem(15);
+    gap: rem(10);
+  }
+
+  &__logo {
+    position: relative;
+    height: 35px;
+    width: 300px;
+    @include adaptiveValue('width', 300, 200);
+    background: url("../img/HomePage/pcLogo.svg") 50% / 100% no-repeat;
+
+    @media (max-width:350px) {
+      width: 45px;
+      background: url("../img/HomePage/mobileLogo.svg") 50% / 100% no-repeat;
+    }
+  }
+}
+
+// home
+.home {
+
+  &{
+    color: #fff;
+    overflow: auto;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin: rem(70) 0;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+  }
+
+  &__container {
+    position: relative;
+    z-index: 50;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-content: space-evenly;
+    max-height: 100%;
+    gap: rem(20);
+
+
+    @media (max-width:$mobile) {
+      grid-template-columns: auto;
+      grid-template-rows: repeat(2, auto);
+    }
+  }
+
+  // Left
+  &__left {
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(25);
+    height: 100%;
+    @include adaptiveValue("font-size", 32, 24);
+    font-size: rem(30);
+
+    @media (max-width:1600px) {
+      flex-direction: column;
+      margin: 0 rem(25);
+    }
+  }
+
+  &__title {
+    color: #FF003C;
+    font-size: em(30)
+  }
+
+  &__text {
+    font-size: em(15);
+    @include adaptiveValue("margin-bottom", 70, 0);
+  }
+
+  &__log {
+    display: inline-block;
+    align-self: flex-start;
+    padding: rem(15) rem(30);
+    background-color: #FF003C;
+    border-radius: rem(8);
+    font-size: em(10);
+    color: #000;
+
+    &:hover {
+      background-color: rgba(255, 0, 60, 0.8);
+      box-shadow: 0px 4px 45px rgba(255, 0, 60, 0.7);
+      color: #fff;
+    }
+  }
+
+  // Right
+  &__right {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-areas: 'account news' 'account weather';
+    grid-template-columns: .6fr .4fr;
+    grid-template-rows: .5fr .5fr;
+    gap: rem(5);
+    @include adaptiveValue('width', 345, 245);
+    @include adaptiveValue('height', 390, 290);
+  }
+
+  &__item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &_account {
+      background-color: #FCEE0A;
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 11%);
+      grid-area: account;
+      // display: flex;
+      flex-direction: column;
+      row-gap: rem(20);
+
+      &:hover {
+        background-color: #FF003C;
+      }
+
+      &:hover .home__account-name{
+        color: #FCEE0A;
+      }
+    }
+
+    &_news {
+      border: 2px solid #FCEE0A;
+      grid-area: news;
+      background-color: #000;
+
+      &:hover {
+        border: 2px solid #FF003C;
+      }
+      &::before {
+        @include adaptiveValue('font-size', 80, 50);
+        color: #FCEE0A;
+      }
+      &:hover::before {
+        color: #FF003C;
+      }
+    }
+
+    &_weather {
+      grid-area: weather;
+      clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+      background-color: #FCEE0A;
+      padding: 2px;
+      &:hover {
+          background-color: #FF003C;
+      }
+      &:hover .home__wrapper::before {
+        color: #FF003C;
+      }
+    }
+  }
+
+  &__wrapper {
+    background-color: #000;
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%);
+    width: 100%;
+    height: 100%;
+    position: relative;
+    &::before {
+      color: #FCEE0A;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 50%;
+      transform: translate(-50%, -50%);
+      @include adaptiveValue('font-size', 70, 50);
+    }
+  }
+
+  &__account-name {
+    color: #000;
+    font-size: rem(20);
+    @include adaptiveValue('width', 160, 120);
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: center;
+
+    &::before {
+      color: #FCEE0A;
+      @include adaptiveValue('font-size', 80, 70);
+      background-color: #000;
+      padding: rem(20);
+      border-radius: 50%;
+    }
+  }
+
+  &__img-ibg {
+    @include adaptiveValue('padding', 80, 50);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}
+
+// home > catalog
+.catalog {
+  &{
+    background-color: #FCEE0A;
+    color: #000;
+    box-sizing: content-box;
+    position: fixed;
+    top: calc(100% - rem(50));
+    left: 0;
+    height: calc(100vh);
+    width: 100%;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    row-gap: rem(15);
+    transition: all .3s ease;
+    // overflow: auto;
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 0;
+    width: 100%;
+    height: 15px;
+    background: url('../img/HomePage/city-line.svg') 50% / cover no-repeat;
+    transform: rotate(180deg);
+    }
+
+  &._active-tab-container {
+    top: 0;
+    transition: all .3s ease;
+  }
+
+  &__menu {
+    display: flex;
+    column-gap: rem(10);
+    height: rem(50);
+    justify-content: center;
+    align-items: center;
+    padding: rem(5) rem(15);
+  }
+
+  &__btn {
+    @include adaptiveValue('font-size', 22, 16);
+    padding: rem(8) rem(15);
+    font-family: 'Cyber';
+    border: 1px solid transparent;
+
+    &:hover{
+      border: 1px solid #000;
+    }
+
+    &._active-tab-btn {
+      border-bottom: 1px solid #000;
+    }
+
+    &_remove {
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      position: relative;
+      display: none;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: calc(50% - 2px);
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: calc(50% - 2px);
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #000;
+        transform: rotate(-45deg);
+      }
+
+      &:hover::after, &:hover::before{
+        background-color: #FF003C;
+      }
+
+      &:hover, &:active, &:visited{
+        border: 1px solid transparent;
+      }
+
+      ._active-tab-container &{
+        display: inline-block;
+      }
+    }
+  }
+
+  &__items {}
+
+  &__item {
+    display: none;
+    grid-template-rows: auto;
+    grid-template-columns: repeat(8, 1fr);
+    gap: rem(15);
+    padding: 0 rem(15);
+
+    @media (max-width:$pc) {
+      grid-template-columns: repeat(7, 1fr);
+    }
+
+    @media (max-width:1400px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media (max-width:$tablet) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media (max-width:$mobile) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width:$mobileSmall) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    &._active-tab {
+      display: grid;
+    }
+  }
+
+}
+
+// home > catalog > card
+.card {
+  &{
+    position: relative;
+    color: #000;
+    overflow: hidden;
+
+    &:hover {
+      color: #FF003C;
+    }
+  }
+
+  &__img-ibg {
+    display: block;
+    border: 1px solid #000;
+    overflow: hidden;
+    @include adaptiveValue('padding-bottom', 250, 100);
+  }
+
+  &__img { 
+    transition: transform .3s ease;
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  &__title {
+    @include adaptiveValue('font-size', 24, 16);
+    cursor: pointer;
+    display: flex;
+    column-gap: rem(3);
+    flex-direction: row-reverse;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    &::before {
+      @include adaptiveValue('font-size', 18, 12);
+      font-weight: 600;
+    }
+  }
+}
+
+
+
+
+
