@@ -1,15 +1,18 @@
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const bodyParser = require('body-parser'); 
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+require('dotenv').config();
 const authRoutes = require('./routes/authRoutes'); 
+const termRoutes = require('./routes/termAppRoutes');
+const uploadRoutes = require('./routes/uploadPicRoutes');
 
 // Налаштування серверу
 const app = express();
-const PORT = 3000;
-const db = 'mongodb+srv://JustMaryan:Maryan159753@myserver.hkwny.mongodb.net/myServer?retryWrites=true&w=majority&appName=MyServer';
+const PORT = process.env.PORT || 5000;
+const db = process.env.MONGO_URI;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -19,7 +22,6 @@ app.use(cors({
     methods: ['GET', 'POST',  'PUT', 'DELETE'], // Дозволені методи
     credentials: true // Дозвіл на передачу cookies
   }));
-
 app.use(express.json());
 app.use(cookieParser());
 
@@ -32,8 +34,11 @@ async function start() {
         console.log("Помилка підключення до MongoDB:", err);
     }
 
+
     // Маршрути для API   
     app.use(authRoutes); 
+    app.use(termRoutes);
+    app.use(uploadRoutes);
 
     // Статичні файли
     app.use(express.static(path.resolve(__dirname, '..', 'client')));
@@ -48,5 +53,5 @@ async function start() {
     });
 }
 
-// Викликаємо функцію для запуску
+
 start();

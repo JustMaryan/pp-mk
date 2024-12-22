@@ -1,9 +1,7 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
-
-const JWT_SECRET = 'my_secret_key_2000_mk';
-const JWT_EXPIRES = '6d';
+require('dotenv').config();
 
 class AuthController {
 
@@ -35,8 +33,13 @@ class AuthController {
       await newUser.save();
 
       // Генерація токена
-      const token = jwt.sign({ userId: newUser._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES });
-      res.cookie('auth_token', token, { httpOnly: true, secure: false});
+      const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
+      res.cookie('auth_token', token, { 
+        httpOnly: true, 
+        secure: true,
+        maxAge: 6 * 24 * 60 * 60 * 1000,
+        expires: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
+      });
       res.status(201).json({ message: `Користувач ${username} зареєстрований`});
     } catch (error) {
       res.status(500).json({ message: 'Помилка сервера', error: 'serverError' });
@@ -61,8 +64,13 @@ class AuthController {
       }
 
       // Генерація токена
-      const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: JWT_EXPIRES });
-      res.cookie('auth_token', token, { httpOnly: true, secure: false});
+      const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES });
+      res.cookie('auth_token', token, { 
+        httpOnly: true, 
+        secure: true,
+        maxAge: 6 * 24 * 60 * 60 * 1000,
+        expires: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
+      });
       res.status(200).json({ message: 'Авторизація успішна' });
     } catch (error) {
       res.status(500).json({ message: 'Помилка сервера', error: 'serverError' });
@@ -139,7 +147,12 @@ class AuthController {
         return res.status(404).json({ message: 'Користувача не знайдено', error:"notFind" });
       }
   
-      res.clearCookie('auth_token', { httpOnly: true, secure: false });
+      res.clearCookie('auth_token', { 
+        httpOnly: true, 
+        secure: true,
+        maxAge: 6 * 24 * 60 * 60 * 1000,
+        expires: new Date(Date.now() + 6 * 24 * 60 * 60 * 1000),
+      });
       res.status(200).json({ message: 'Користувача успішно видалено' });
     } catch (error) {
       console.error('Помилка при видаленні користувача:', error);
@@ -156,7 +169,7 @@ class AuthController {
         return res.status(400).json({ message: 'Користувач не авторизований або вже вийшов', error:"notFind" });
       }
       
-      res.clearCookie('auth_token', { httpOnly: true, secure: false });
+      res.clearCookie('auth_token');
       res.status(200).json({ message: 'Користувача успішно вийшов'});
     } catch (error) {
       res.status(500).json({ message: 'Помилка сервера', error: 'serverError' });
